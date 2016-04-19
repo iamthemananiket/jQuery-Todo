@@ -1,0 +1,39 @@
+{
+    "RoleName": "database-vm-1",
+    "RoleType": "PersistentVMRole",
+    "RoleSize": "A5",
+    "AvailabilitySetName" : "databases",
+    "OSVirtualHardDisk": {
+        "OS": "Linux",
+        "HostCaching": "ReadWrite",
+        "DiskName": "database-vm-1-disk",
+        "DiskLabel": "database-vm-1-disk",
+        "SourceImageName": "Debian-Wheezy-635506180993665396",
+        "RemoteSourceImageLink": "http://account.blob.core.windows.net/vmdepot-images/TE-2014-11-03-debianwheezy-os-2014-11-03.vhd",
+        "MediaLink" : "http://account.blob.core.windows.net/vmdepot-images/database-vm-1-disk.vhd"
+    },
+    "DataVirtualHardDisks": [
+        { "DiskLabel": "database-vm-1-data1", "Lun": "0", "MediaLink" : "http://account.blob.core.windows.net/vmdepot-images/database-vm-1-data1.vhd", "HostCaching": "ReadOnly", "LogicalDiskSizeInGB": "1023" },
+        { "DiskLabel": "database-vm-1-data2", "Lun": "1", "MediaLink" : "http://account.blob.core.windows.net/vmdepot-images/database-vm-1-data2.vhd", "HostCaching": "ReadOnly", "LogicalDiskSizeInGB": "1023" },
+        { "DiskLabel": "database-vm-1-xlog1", "Lun": "2", "MediaLink" : "http://account.blob.core.windows.net/vmdepot-images/database-vm-1-xlog1.vhd", "HostCaching": "ReadOnly", "LogicalDiskSizeInGB": "1023" } 
+    ],
+    "ConfigurationSets": [
+        {
+            "ConfigurationSetType" : "LinuxProvisioningConfiguration",
+            "HostName" : "database-vm-1",
+            "UserName" : "ruth",
+            "UserPassword" : "Supersecret123!!",
+            "DisableSshPasswordAuthentication" : false
+        },
+        {
+            "ConfigurationSetType": "NetworkConfiguration",
+            "SubnetNames": [ "mysubnet" ],
+            "StaticVirtualNetworkIPAddress": "10.10.0.7",
+            "InputEndpoints": [],
+            "PublicIPs": [],
+            "StoredCertificateSettings": []
+        }
+    ],
+    "ProvisionGuestAgent": "true",
+    "ResourceExtensionReferences": []
+}
